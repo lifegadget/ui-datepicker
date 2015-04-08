@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import layout from '../templates/components/ui-datepicker';
-import { moment, ago } from 'ember-moment/computed';
 
 export default Ember.Component.extend({
   layout: layout,
@@ -10,8 +9,7 @@ export default Ember.Component.extend({
   value: null,
   _valueInit: Ember.on('didInsertElement', function() {
     let value = this.get('value');
-    let today = new Date();
-    // today = moment(today);
+    let today = new Date().seconds(0).minutes(0).hours(0);
     if(!value) {
       this.set('value', today);
     }

@@ -9,6 +9,7 @@ ember install ui-datepicker
 
 ## Usage ##
 
+![ ](vendor/ui-datepicker/demo-shot.gif)
 
 ````hbs
   {{ui-datepicker value=myDate}}

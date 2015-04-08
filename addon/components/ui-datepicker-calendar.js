@@ -22,7 +22,6 @@ export default Ember.Component.extend({
   }),
   when: null,
   _whenOberserver: Ember.observer('when', function() {
-    let when = this.get('when');
     this.set('visibility', false);
   }),
   
