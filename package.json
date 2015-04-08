@@ -1,7 +1,7 @@
 {
   "name": "ui-datepicker",
   "version": "0.0.3",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "A mobile-friendly date picker.",
   "directories": {
     "doc": "doc",
     "test": "tests"
