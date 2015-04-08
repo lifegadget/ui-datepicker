@@ -18,6 +18,7 @@
 
 .ui-datepicker .vertical .item {
     display: flex-item;
+    overflow: hidden;
 }
 
 .ui-datepicker .date-bar {
@@ -36,7 +37,7 @@
     margin: 0;
     line-height: 18pt;
     cursor: pointer;
- }
+}
 
 .ui-datepicker .date-bar .description .short {
     cursor: pointer;
@@ -68,7 +69,7 @@
 }
 
 .ui-datepicker .date-arrow.right {
-/*    margin-right: -15px;*/
+    /*    margin-right: -15px;*/
     float:right;
     padding-right: 0px;
     border-bottom-right-radius: 15px;
@@ -85,8 +86,9 @@
 
 .ui-datepicker .calendar-bar {
     position: relative;
-    z-index: -900;
+    z-index: 0;
     margin: 0 52px 0 52px;
+    height: 100%;
 }
 
 .ui-datepicker .calendar-bar .ember-view {
@@ -99,65 +101,69 @@
 }
 
 .ui-datepicker .calendar-bar .ember-view th {
-    font-size: 1.8em;
+    /*    font-size: 1.8em;*/
 }
 .ui-datepicker .calendar-bar .ember-view td {
-    font-size: 1.5em;
+    /*    font-size: 1.5em;*/
 }
 
 .ui-datepicker .datepicker-inline {
     font-size: 11pt;    
-/*    display:inline-block;*/
+    display:inline-block;
 }
 @media (max-width: 768px) {
     .ui-datepicker .datepicker-inline {
-    	font-size: 9pt;
+        font-size: 9pt;
     }
 }
 
-.ui-datepicker .datepicker {
-/*    width: 100%;*/
+    .ui-datepicker .datepicker {
+    /*    width: 100%;*/
 }
 
 .ui-datepicker .datepicker > div {
-/*    display: inline-block;*/
+    display: inline-block;
 }
 
 @media (min-width: 1200px) {
     .ui-datepicker .datepicker-inline {
-    	font-size: 12pt;
+        font-size: 12pt;
     }
 }
 
 @keyframes revealDown {
-  0% {
-    transform: translate3d(0, -500px, 0);
-  }
+    0% {
+        height: 0px;
+        transform: translate3d(0, -260px, 0);
+    }
 
-  100% {
-    transform: translate3d(0px, 0, 0);
-  }
+    100% {
+        height:260px;
+        transform: translate3d(0px, 0, 0);
+    }
 }
 
 .revealDown {
-  animation-name: revealDown;
-  animation-duration: .35s;
+    animation-name: revealDown;
+    animation-duration: .35s;
 }
 
 
 @keyframes concealUp {
-  0% {
-    transform: translate3d(0, 0px, 0);
-  }
+    0% {
+        height: 260px;
+        transform: translate3d(0, 0px, 0);
+    }
 
-  100% {
-    transform: translate3d(0px, -500px, 0);
-  }
+    100% {
+        height: 0px;
+        transform: translate3d(0px, -260px, 0);
+    }
 }
 
 .concealUp {
-  animation-name: concealUp;
-  animation-duration: .35s;
+    animation-name: concealUp;
+    animation-duration: .35s;
 }
 
 

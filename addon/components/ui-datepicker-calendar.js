@@ -9,7 +9,7 @@ export default Ember.Component.extend({
   _visibility: Ember.observer('visibility', function() {
     let visibility = this.get('visibility');
     if(visibility) {
-      this.$().removeClass('hidden');
+      // this.$().removeClass('hidden');
       this.applyEffect('revealDown').then( ()=> {
         console.log('displayed now');
       });
