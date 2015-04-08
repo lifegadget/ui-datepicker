@@ -1,3 +1,24 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<div class="container">
+    <h1 id="title">ui-datepicker</h1>
+    <h2>a horizontal bar which indicates a date and allows for easy switching to other dates</h2>
+    
+    <h3>Basic Setup</h3>
+    <div class="row">
+        <p class="descriptive col-xs-12 col-sm-8 col-lg-6">
+            If no parameters are included the control will assume a date of TODAY.
+        </p>        
+    </div>
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="window {{device}}">
+                {{ui-datepicker}}
+            </div>
+        </div>
+        <div class="col-xs-12 downer">
+            <p>By selecting the device size below, you'll be able to get a quick sense for what it looks like on various devices:</p>
+            {{ui-bs-button-choice choices='ipad,iphone,desktop' selected=device size='large' changeEvent='chooseDevice'}}
+        </div>
+    </div>
 
-{{outlet}}
+</div>
