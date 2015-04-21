@@ -9,12 +9,9 @@ export default Ember.Component.extend({
   _visibility: Ember.observer('visibility', function() {
     let visibility = this.get('visibility');
     if(visibility) {
-      this.applyEffect('revealDown').then( ()=> {
-        console.log('displayed now');
-      });
+      this.applyEffect('revealDown');
     } else {
-      this.applyEffect('concealUp').then( (item)=> {
-        console.log('hidden now');
+      this.applyEffect('concealUp', item => {
         item.addClass('hidden');
       });
     }
@@ -24,18 +21,15 @@ export default Ember.Component.extend({
     this.set('visibility', false);
   }),
   
-  
-  applyEffect: function(effect) {
+  applyEffect: function(effect, cb=null) {
     this.$().addClass('animated ' + effect);
-    let promise = new Promise( (resolve)=> {
-      this.$().removeClass('hidden');
-      this.$().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
-        this.$().removeClass('animated ' + effect);
-        resolve(this.$());
-      });
+    this.$().removeClass('hidden');
+    this.$().one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', () => {
+      this.$().removeClass('animated ' + effect);
+      if(cb) {
+        cb(this.$());
+      }
     });
-    
-    return promise;
   },
   
 });

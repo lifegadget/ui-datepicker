@@ -8,12 +8,21 @@ export default Ember.Component.extend({
   classNames: ['ui-datepicker'],
   calendarVisibility: false,
   value: null,
-  _valueInit: Ember.on('didInsertElement', function() {
-    if(!this.get('value')) {
-      this.set('value', moment().startOf('day').toDate());
+  _valueInit: Ember.on('init', function() {
+    let value = this.get('value');
+    console.log('value is: %o', value);
+    if(!value) {
+      value = moment().startOf('day').toDate();
+    } else if (moment(value,'YYYY-MM-DD').isValid()) {
+      console.warn('%s: invalid date on initialization: %o', this.get('elementId'), value);
+      value = moment().startOf('day').toDate();
+    } else {
+      // ensure no time information
+      value = moment(new Date(value)).startOf('day').toDate();
     }
+    this.set('value', value);
   }),
-  namedDate: Ember.on('didInsertElement', Ember.computed('value', function (key,value) {
+  namedDate: Ember.computed('value', function (key,value) {
     let today = moment().startOf('day');
     let namedDays = ['tomorrow','today','yesterday'];
     
@@ -36,7 +45,7 @@ export default Ember.Component.extend({
     }
     
     return selected.format('YYYY-MM-DD');
-  })),
+  }),
   date: Ember.on('didInsertElement', Ember.computed('value', function (key, setter) {
     // setter 
     if (arguments.length > 1) {
@@ -45,6 +54,10 @@ export default Ember.Component.extend({
     // getter
 
    return moment(this.get('value')).startOf('day').format('YYYY-MM-DD');
+  })),
+  desc: Ember.on('didInsertElement', Ember.computed('value', function() {
+    let value = this.get('value');
+    return moment(this.get('value'),'YYYY-MM-DD').calendar();
   })),
   
   actions: {
