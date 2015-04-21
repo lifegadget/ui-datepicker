@@ -1,6 +1,6 @@
 {
   "name": "ui-datepicker",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A mobile-friendly date picker.",
   "directories": {
     "doc": "doc",
@@ -31,7 +31,8 @@
     "ember-data": "1.0.0-beta.16.1",
     "ember-export-application-global": "^1.0.2",
     "ember-moment": "1.1.1",
-    "ui-bs-button-choice": "0.0.10"
+    "ui-bs-button-choice": "0.0.10",
+    "ui-code-highlight": "0.0.5"
   },
   "keywords": [
     "ember-addon",
