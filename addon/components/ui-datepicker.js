@@ -56,7 +56,6 @@ export default Ember.Component.extend({
    return moment(this.get('value')).startOf('day').format('YYYY-MM-DD');
   })),
   desc: Ember.on('didInsertElement', Ember.computed('value', function() {
-    let value = this.get('value');
     return moment(this.get('value'),'YYYY-MM-DD').calendar();
   })),
   

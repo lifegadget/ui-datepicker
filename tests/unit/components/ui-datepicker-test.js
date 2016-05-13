@@ -5,7 +5,7 @@ import {
 
 moduleForComponent('ui-datepicker', {
   // Specify the other units that are required for this test
-  // needs: ['component:foo', 'helper:bar']
+  needs: ['component:ui-datepicker-datebar', 'component:ui-datepicker-calendar']
 });
 
 test('it renders', function(assert) {

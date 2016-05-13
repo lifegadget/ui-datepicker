@@ -18,7 +18,6 @@ export default Ember.Component.extend({
   
   actions: {
     toggleCalendar: function() {
-      console.log('toggle calendar');
       this.sendAction('toggleCalendar');
     },
     incrementDate: function() {
