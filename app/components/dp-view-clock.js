@@ -1,0 +1,1 @@
+export { default } from 'ui-datepicker/components/dp-view-clock';

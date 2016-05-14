@@ -1,0 +1,26 @@
+{{#app-page
+  repo='ui-datepicker'
+  repoOwner='lifegadget'
+  subHeading='A composable Ember date-picker'
+}}
+
+
+  {{#if notIndexPage}}
+      {{#link-to 'index'}}
+      <div class="back-navigation">
+          {{ui-icon 'arrow-circle-left' size='5x' class='animated fadeIn'}}
+      </div>
+      {{/link-to}}
+  {{/if}}
+
+{{/app-page}}
+
+{{#if notIndexPage}}
+    {{#link-to 'index'}}
+    <div class="back-navigation">
+        {{ui-icon icon='arrow-circle-left' size='5x' class='animated fadeIn'}}
+    </div>
+    {{/link-to}}
+{{/if}}
+
+{{date-picker}}
