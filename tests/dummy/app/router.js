@@ -7,7 +7,11 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('demo-inline');
-  this.route('demo-block');
+  this.route('demo-block', function() {
+    this.route('example1');
+    this.route('example2');
+    this.route('example3');
+  });
 });
 
 export default Router;

@@ -1,1 +1,83 @@
-{{yield}}
+<view-container
+  id={{elementId}}
+  class="{{class}} view-container"
+>
+  {{#if hasBlock}}
+
+    {{yield (hash
+      time=(component 'dp-view-text'
+        class='time'
+        inputs='time'
+        datetime=datetime
+        format=timeFormat
+        size=size
+        mood=mood
+      )
+      day=(component 'dp-view-text'
+        class='day'
+        inputs='dow'
+        datetime=datetime
+        format=dayFormat
+        size=size
+        mood=mood
+      )
+      date=(component 'dp-view-text'
+        class='date'
+        inputs='month'
+        datetime=datetime
+        format=dateFormat
+        size=size
+        mood=mood
+      )
+      calendar=(component 'dp-view-calendar'
+        class='date'
+        datetime=datetime
+        size=size
+        mood=mood
+      )
+      clock=(component 'dp-view-clock'
+        class='time'
+        datetime=datetime
+        size=size
+        mood=mood
+      )
+    )}}
+
+  {{else}}
+
+    {{! INLINE }}
+
+    {{#if showDay}}
+      {{dp-view-text
+        class='day'
+        inputs='dow'
+        datetime=datetime
+        format=dayFormat
+        size=size
+        mood=mood
+      }}
+    {{/if}}
+    {{dp-view-text
+      class='date'
+      inputs='month'
+      datetime=datetime
+      format=dateFormat
+      size=size
+      mood=mood
+    }}
+    {{#if showTime}}
+      {{dp-view-text
+        class='time'
+        inputs='time'
+        datetime=datetime
+        format=timeFormat
+        size=size
+        mood=mood
+      }}
+    {{/if}}
+
+  {{/if}}
+
+  {{yield}}
+
+</view-container>

@@ -1,1 +1,12 @@
-{{yield}}
+<incrementer
+  id={{elementId}}
+  class="{{class}}"
+>
+
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    <img class='increment-image' src="/ui-datepicker/images/{{direction}}.svg" alt="">
+  {{/if}}
+
+</incrementer>

@@ -1,0 +1,16 @@
+{{#date-picker
+  start='2016-7-28'
+  stop='2016-12-25'
+  as |dp|
+}}
+  {{dp.decrementer increment=-1 incrementUnit='days'}}
+  {{!-- {{#dp.start as |start|}}
+    {{#start.date}}
+      start
+    {{/start.date}}
+  {{/dp.start}} --}}
+  {{dp.start}}
+  {{dp.divider '→'}}
+  {{dp.end}}
+  {{dp.incrementer increment=1 incrementUnit='days'}}
+{{/date-picker}}

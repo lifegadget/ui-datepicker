@@ -1,15 +1,12 @@
 {
   "name": "ui-datepicker",
   "dependencies": {
-    "ember": "~2.6.0-beta.2",
+    "ember": "~2.6.0-beta.4",
     "ember-cli-shims": "0.1.1",
     "ember-cli-test-loader": "0.2.2",
     "ember-qunit-notifications": "0.1.0",
-    "bootstrap": "v4.0.0-alpha.2"
-  },
-  "devDependencies": {
-    "prism": "^1.5.0",
-    "font-awesome": "fontawesome#^4.6.3"
+    "showdown": "^1.4.0",
+    "fontawesome": "^4.6.3",
+    "prism": "^1.5.0"
   }
-
 }

@@ -4,6 +4,45 @@
   name={{name}}
   class="ui-datepicker {{class}}{{_skin}}{{_mood}}"
 >
+  {{#if hasBlock}}
+    {{yield (hash
+      start=(component 'dp-view-container'
+        class='start'
+        datetime=_start
+        duration=null
+        showTime=showTime
+        showDuration=false
+        showDay=showDay
+        holidays=holidays
+        whitelist=whitelist
+        blacklist=blacklist
+        dayFormat=dayFormat
+        dateFormat=dateFormat
+        timeFormat=timeFormat
+        size=size
+        mood=mood
+      )
+      end=(component 'dp-view-container'
+        class='stop'
+        datetime=_stop
+        duration=duration
+        showTime=showTime
+        showDuration=showDuration
+        showDay=showDay
+        holidays=holidays
+        whitelist=whitelist
+        blacklist=blacklist
+        dayFormat=dayFormat
+        dateFormat=dateFormat
+        timeFormat=timeFormat
+      )
+      incrementer=(component 'dp-incrementer' increment=increment incrementUnit=incrementUnit)
+      decrementer=(component 'dp-incrementer' increment=(dp-inverse increment) incrementUnit=incrementUnit)
+      divider=(component 'dp-divider' src=imageTopSrc top=true)
+    )}}
+  {{else}}
+    not block
+  {{/if}}
 
 
 </datepicker>

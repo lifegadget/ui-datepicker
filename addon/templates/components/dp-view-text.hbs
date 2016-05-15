@@ -1,1 +1,17 @@
-{{yield}}
+<view-text
+  id={{elementId}}
+  class="view text {{class}}"
+>
+  {{#if hasBlock}}
+
+    block
+    {{yield}}
+
+  {{else}}
+
+    {{#if (and datetime format)}}
+      {{moment-format datetime format}}
+    {{/if}}
+
+  {{/if}}
+</view-text>

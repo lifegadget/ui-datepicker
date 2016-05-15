@@ -1,0 +1,14 @@
+.skin-default .view {
+  cursor: pointer;
+  padding: 3px 4px;
+}
+
+.skin-default .view:hover {
+  background: lightgrey;
+  border-radius: 2px;
+}
+
+.skin-default .increment-image {
+  width: 2em;
+  height: 2em;
+}
