@@ -1,16 +1,31 @@
-{{#date-picker
+<div class="row">
+  <div class="col-xs-6">
+    {{#date-picker
+      start=onStartChange
+      stop='2016-12-25'
+
+      onStartChange=(mut onStartChange)
+      as |dp|
+    }}
+      {{dp.decrementer increment=-1 incrementUnit='days'}}
+      {{!-- {{#dp.start as |start|}}
+        {{#start.date}}
+          start
+        {{/start.date}}
+      {{/dp.start}} --}}
+      {{dp.start}}
+      {{dp.divider '→'}}
+      {{dp.end}}
+      {{dp.incrementer increment=1 incrementUnit='days'}}
+    {{/date-picker}}
+  </div>
+  <div class="col-xs-6">
+    <pre><code id='testing' class="handlebars">
+\{{#date-picker
   start='2016-7-28'
   stop='2016-12-25'
   as |dp|
 }}
-  {{dp.decrementer increment=-1 incrementUnit='days'}}
-  {{!-- {{#dp.start as |start|}}
-    {{#start.date}}
-      start
-    {{/start.date}}
-  {{/dp.start}} --}}
-  {{dp.start}}
-  {{dp.divider '→'}}
-  {{dp.end}}
-  {{dp.incrementer increment=1 incrementUnit='days'}}
-{{/date-picker}}
+</code></pre>
+  </div>
+</div>

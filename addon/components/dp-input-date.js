@@ -5,10 +5,18 @@ const inputDate = Ember.Component.extend({
   layout,
   tagName:'',
 
+  datetime: null,
+  isYearRelevant: true,
+
+  actions: {
+    changeInputFrame(frame) {
+      console.log(frame);
+    }
+  }
 
 });
 inputDate.reopenClass({
-  positionalParams: ['date']
+  positionalParams: ['datetime']
 });
 inputDate[Ember.NAME_KEY] = 'input-date';
 export default inputDate;

@@ -1,1 +1,13 @@
+<dp-input
+  id={{elementId}}
+  class="month{{if class (concat ' ' class)}}"
+>
+  {{dp-input-month-heading
+    datetime=datetime
+    isYearRelevant=isYearRelevant
+    onChange=onChange
+  }}
+  <div class="days-of-week fill">
+  </div>
+</dp-input>
 {{yield}}

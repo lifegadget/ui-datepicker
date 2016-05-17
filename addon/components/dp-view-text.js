@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/dp-view-text';
 import momentize from '../utils/momentize';
+import dpView from '../mixins/dp-view';
 
 const { keys, create } = Object; // jshint ignore:line
 const { RSVP: {Promise, all, race, resolve, defer} } = Ember; // jshint ignore:line
@@ -10,7 +11,7 @@ const { get, set, debug } = Ember; // jshint ignore:line
 const a = Ember.A; // jshint ignore:line
 
 
-const viewText = Ember.Component.extend({
+const viewText = Ember.Component.extend(dpView, {
   layout,
   tagName:'',
 

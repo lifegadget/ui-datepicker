@@ -1,1 +1,11 @@
+{{ui-animate animateOut domElement=elementId event='exit'}}
+<dp-composer id={{elementId}} class="{{class}} fill {{skin}}">
+  {{#each _inputs as |i|}}
+    {{#ui-animate animateIn}}
+    {{component (concat 'dp-input-' i)
+      datetime=datetime
+    }}
+    {{/ui-animate}}
+  {{/each}}
+</dp-composer>
 {{yield}}

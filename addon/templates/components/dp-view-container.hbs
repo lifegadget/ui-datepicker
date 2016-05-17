@@ -12,6 +12,7 @@
         format=timeFormat
         size=size
         mood=mood
+        requestInputFrame=requestInputFrame
       )
       day=(component 'dp-view-text'
         class='day'
@@ -20,6 +21,7 @@
         format=dayFormat
         size=size
         mood=mood
+        requestInputFrame=requestInputFrame
       )
       date=(component 'dp-view-text'
         class='date'
@@ -28,18 +30,21 @@
         format=dateFormat
         size=size
         mood=mood
+        requestInputFrame=requestInputFrame
       )
       calendar=(component 'dp-view-calendar'
         class='date'
         datetime=datetime
         size=size
         mood=mood
+        requestInputFrame=requestInputFrame
       )
       clock=(component 'dp-view-clock'
         class='time'
         datetime=datetime
         size=size
         mood=mood
+        requestInputFrame=requestInputFrame
       )
     )}}
 
@@ -55,15 +60,17 @@
         format=dayFormat
         size=size
         mood=mood
+        requestInputFrame=requestInputFrame
       }}
     {{/if}}
     {{dp-view-text
       class='date'
-      inputs='month'
+      inputs='date'
       datetime=datetime
       format=dateFormat
       size=size
       mood=mood
+      requestInputFrame=requestInputFrame
     }}
     {{#if showTime}}
       {{dp-view-text
@@ -73,6 +80,7 @@
         format=timeFormat
         size=size
         mood=mood
+        requestInputFrame=requestInputFrame
       }}
     {{/if}}
 

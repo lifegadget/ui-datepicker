@@ -12,3 +12,31 @@
   width: 2em;
   height: 2em;
 }
+
+.skin-default incrementer {
+  cursor: pointer;
+}
+
+dp-input {
+  background-color: white;
+  padding: 1em;
+  border-radius: 0.25em;
+  border: 1px darkgrey solid;
+  width: 260px;
+  height: 260px;
+}
+
+dp-input-month-heading .current-month .month {
+  font-weight: 700;
+  color: #000;
+}
+.current-month .year {
+  font-weight: 400;
+  color: #252424;
+}
+
+dow .day,
+calendar-body .day {
+  color: #999;
+  font-size: smaller;
+}

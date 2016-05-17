@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import layout from '../templates/components/dp-view-container';
-import momentize from '../utils/momentize';
 
 const { keys, create } = Object; // jshint ignore:line
 const { RSVP: {Promise, all, race, resolve, defer} } = Ember; // jshint ignore:line

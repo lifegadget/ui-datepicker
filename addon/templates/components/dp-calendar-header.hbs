@@ -1,0 +1,31 @@
+<dp-input-month-heading
+  id={{elementId}}
+  class="{{if class (concat class ' ')}}flex fill"
+>
+  {{#if hasBlock}}
+    {{yield}}
+  {{else}}
+    {{#dp-incrementer
+      class='previous-month'
+      increment=-1
+      incrementUnit='months'
+    }}
+      &lt;
+    {{/dp-incrementer}}
+
+    <span class='current-month fill justify-center'>
+      <span class="month">{{moment-format datetime 'MMMM'}}</span>
+      {{#if isYearRelevant}}
+        &nbsp;
+        <span class="year">{{moment-format datetime 'YYYY'}}</span>        
+      {{/if}}
+    </span>
+    {{#dp-incrementer
+      class='next-month'
+      increment=-1
+      incrementUnit='months'
+    }}
+      &gt;
+    {{/dp-incrementer}}
+  {{/if}}
+</dp-input-month-heading>

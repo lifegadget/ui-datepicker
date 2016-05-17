@@ -22,12 +22,12 @@ export default function momentize(input) {
         object = moment(new Date(`1970-1-1 ${input}`));
         format = 'text-time';
       } else {
-        object = /-/.test(input) ? moment(new Date(input)) : moment.unix(input);
-        format = /-/.test(input) ? 'text-datetime' : 'unix';
+        object = moment(new Date(input));
+        format = /\:/.test(input) ? 'text-datetime' : 'text-date';
       }
       break;
 
-    case 'object':
+    case 'instance':
       object = input._isAMomentObject ? input : moment(input);
       format = input._isAMomentObject ? 'moment-object' : 'date-object';
       break;

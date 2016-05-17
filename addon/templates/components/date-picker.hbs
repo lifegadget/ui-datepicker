@@ -2,7 +2,7 @@
   id={{elementId}}
   role={{role}}
   name={{name}}
-  class="ui-datepicker {{class}}{{_skin}}{{_mood}}"
+  class="ui-datepicker {{class}}{{_skin}}{{_mood}}{{_size}}"
 >
   {{#if hasBlock}}
     {{yield (hash
@@ -21,6 +21,8 @@
         timeFormat=timeFormat
         size=size
         mood=mood
+
+        requestInputFrame=requestInputFrame
       )
       end=(component 'dp-view-container'
         class='stop'
@@ -35,14 +37,67 @@
         dayFormat=dayFormat
         dateFormat=dateFormat
         timeFormat=timeFormat
+
+        requestInputFrame=requestInputFrame
       )
-      incrementer=(component 'dp-incrementer' increment=increment incrementUnit=incrementUnit)
-      decrementer=(component 'dp-incrementer' increment=(dp-inverse increment) incrementUnit=incrementUnit)
+      incrementer=(component 'dp-incrementer'
+        target='start'
+        increment=1
+        incrementUnit=incrementUnit
+        onIncrement=(action 'onIncrement')
+      )
+      decrementer=(component 'dp-incrementer'
+        target='start'
+        increment=-1
+        incrementUnit=incrementUnit
+        onIncrement=(action 'onIncrement')
+      )
       divider=(component 'dp-divider' src=imageTopSrc top=true)
     )}}
   {{else}}
     not block
   {{/if}}
-
-
 </datepicker>
+{{#if showStartComposer}}
+<div class="start-composer">
+  {{#ember-tether
+    id=(concat 'start-composer-' elementId)
+    target=_startTarget
+    targetAttachment='top center'
+    attachment='bottom center'
+    offset='25px 0'
+  }}
+  {{dp-composer
+    datetime=_start
+    inputs=_inputs
+    skin=_skin
+    animateIn=animateIn
+    animateOut=animateOut
+    onChange=(action 'onChange')
+  }}
+  {{/ember-tether}}
+  {{!-- {{ui-animate 'fadeOut' domElement=(concat '#start-composer-' elementId) event='monkey'}} --}}
+</div>
+{{/if}}
+
+{{#if showStopComposer}}
+<div class="stop-composer">
+  {{#ember-tether
+    id=(concat 'stop-composer-' elementId)
+    target=_stopTarget
+    targetAttachment='top center'
+    attachment='bottom center'
+    offset='25px 0'
+  }}
+  {{dp-composer
+    datetime=_stop
+    inputs=_inputs
+    animateIn=animateIn
+    animateOut=animateOut
+    onChange=(action 'onChange')
+  }}
+  {{/ember-tether}}
+  {{!-- {{ui-animate 'fadeIn' domElement=(concat '#stop-composer-' elementId)}}
+  {{ui-animate 'fadeOut' domElement=(concat '#stop-composer-' elementId) event='monkey'}} --}}
+</div>
+{{/if}}

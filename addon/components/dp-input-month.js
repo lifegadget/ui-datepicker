@@ -5,10 +5,13 @@ const inputMonth = Ember.Component.extend({
   layout,
   tagName:'',
 
+  datetime: null,
+  isYearRelevant: true,
+  
 
 });
 inputMonth.reopenClass({
-  positionalParams: ['date']
+  positionalParams: ['datetime']
 });
 inputMonth[Ember.NAME_KEY] = 'input-month';
 export default inputMonth;

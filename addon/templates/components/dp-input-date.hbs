@@ -1,1 +1,38 @@
-{{yield}}
+<dp-input
+  id={{elementId}}
+  class="date{{if class (concat ' ' class)}}"
+>
+  {{#if hasBlock}}
+    {{yield (hash
+      header=(component 'dp-calendar-header'
+        datetime=datetime
+        isYearRelevant=isYearRelevant
+        onClick=(action 'changeInputFrame')
+      )
+      dow=(component 'dp-calendar-dow'
+        weekStartsOn=weekStartsOn
+      )
+      calendar=(component 'dp-calendar-body'
+        datetime=datetime
+        isYearRelevant=isYearRelevant
+      )
+    )}}
+  {{else}}
+
+    {{dp-calendar-header
+      datetime=datetime
+      isYearRelevant=isYearRelevant
+      onClick=(action 'changeInputFrame')
+    }}
+    {{#if isYearRelevant}}
+      {{dp-calendar-dow
+        weekStartsOn=weekStartsOn
+      }}      
+    {{/if}}
+    {{dp-calendar-body
+      datetime=datetime
+      isYearRelevant=isYearRelevant
+    }}
+
+  {{/if}}
+</dp-input>

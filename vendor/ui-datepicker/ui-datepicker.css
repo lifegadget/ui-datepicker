@@ -1,4 +1,5 @@
 datepicker,
+dp-composer,
 incrementer,
 view-container,
 view-text {
@@ -12,7 +13,59 @@ datepicker .orient-vertical {
   flex-direction: column;
 }
 
-datepicker.fill {
+datepicker.fill,
+dp-composer.fill {
   flex-basis: 100%;
   min-width: 100%;
+}
+
+dp-composer .fill,
+datepicker .fill {
+  flex: 1 0;
+}
+dp-composer .fit,
+datepicker .fit {
+  flex: 0 0;
+}
+dp-composer span,
+dp-composer div,
+dp-composer .flex,
+datepicker span,
+datepicker .flex,
+datepicker div {
+  display: flex;
+  align-items: center;
+}
+
+dp-composer .justify-center,
+datepicker .justify-center {
+  justify-content: center;
+}
+dp-composer .justify-start,
+datepicker .justify-start {
+  justify-content: flex-start;
+}
+dp-composer .justify-end,
+datepicker .justify-end {
+  justify-content: flex-end;
+}
+
+datepicker {
+  justify-content: space-between;
+  border-radius: 3px;
+  border: 1px darkgrey solid;
+  padding: 0.5em;
+}
+
+datepicker.size-huge {
+  font-size: 2.2em;
+  padding: 0.75em;
+}
+datepicker.size-large {
+  font-size: 1.8em;
+  padding: 0.6em;
+}
+datepicker.size-small {
+  font-size: 0.9em;
+  padding: 0.4em;
 }

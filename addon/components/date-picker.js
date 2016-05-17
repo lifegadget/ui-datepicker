@@ -2,6 +2,8 @@ import Ember from 'ember';
 import layout from '../templates/components/date-picker';
 import moment from 'moment';
 import momentize from '../utils/momentize';
+import ddau from '../mixins/ddau';
+import containerFormat from '../utils/container-format';
 
 const { keys, create } = Object; // jshint ignore:line
 const { RSVP: {Promise, all, race, resolve, defer} } = Ember; // jshint ignore:line
@@ -11,7 +13,7 @@ const { get, set, debug } = Ember; // jshint ignore:line
 const a = Ember.A; // jshint ignore:line
 
 
-const datePicker = Ember.Component.extend({
+const datePicker = Ember.Component.extend(ddau, {
   layout,
   tagName:'',
 
@@ -25,6 +27,8 @@ const datePicker = Ember.Component.extend({
   size: null,
   mood: null,
   skin: 'default',
+  animateIn: 'fadeIn',
+  animateOut: 'fadeOut',
 
   showTime: false,
   showDay: true,
@@ -70,28 +74,78 @@ const datePicker = Ember.Component.extend({
     const {skin} = this.getProperties('skin');
     return skin ? ` skin-${skin}` : '';
   }),
+  _size: computed('size', function() {
+    const {size} = this.getProperties('size');
+    return size ? ` size-${size}` : '';
+  }),
   _mood: computed('mood', function() {
     const {mood} = this.getProperties('mood');
     return mood ? ` mood-${mood}` : '';
   }),
 
-  standardizeFormat(input) {
-    switch(typeOf(input)) {
-      case 'string':
-        this.dateFormat = input.indexOf('-') !== -1 ? 'string' : 'unix';
-        return input.indexOf('-') !== -1 ? input : moment(input).toISOString();
-      case 'object':
-        this.dateFormat = 'object';
-        return input.toISOString();
-      case 'number':
-        this.dateFormat = 'unix';
-        return moment(input).toISOString();
+  /**
+   * Yielded to views downstream so they can request their
+   * inputs to be displayed
+   */
+  _requestInputFrame(show, datetime, selector, inputs) {
+    const which = datetime.unix() === this.get('_start').unix() ? 'start' : 'stop';
+    const notWhich = which === 'start' ? 'stop' : 'start';
+    const {showStartComposer, showStopComposer} = this.getProperties('showStartComposer', 'showStopComposer');
+    const showingThisComposer = which === 'start' ? showStartComposer : showStopComposer;
+    const showingOtherComposer = which === 'start' ? showStopComposer : showStartComposer;
 
-      default:
-        debug('unknown format passed in as date/time');
-        return false;
+    if(show) {
+      if(showingOtherComposer) { this.hideComposer(notWhich); }
+      if(showingThisComposer) {
+        this.hideComposer(which).then(() => {
+          this.showComposer(which, selector, inputs);
+        });
+      } else {
+        this.showComposer(which, selector, inputs);
+      }
+    } else {
+      this.hideComposer(which);
     }
+  },
+  requestInputFrame: computed(function(){ return this._requestInputFrame.bind(this); }),
+  showComposer(which, where, what) {
+    console.log(`show ${which}`);
+    this.set(`_${which}Target`, where);
+    this.set('_inputs', what);
+    this.set(`show${which.slice(0,1).toUpperCase()}${which.slice(1)}Composer`, true);
+  },
+  hideComposer(which) {
+    console.log(`hide ${which}`);
+    this.set(`show${which.slice(0,1).toUpperCase()}${which.slice(1)}Composer`, false);
+  },
 
+  actions: {
+    onChange(datetime, options) {
+      console.log('onchange');
+    },
+    onIncrement(i) {
+      const dtAttribute = `_${i.target}`;
+      const value = moment(this.get(dtAttribute)).add(i.amount, i.unit);
+      const {_start, _stop} = this.getProperties('_start', '_stop');
+      const duration = !_stop ? null : moment(_stop).diff(_start);
+
+      console.log(i.amount, i.units, containerFormat(value, this[`${dtAttribute}Format`]));
+      // send to general change event
+      this.ddau('onChange', {
+        code: i.code,
+        target: i.target,
+        duration,
+        value: containerFormat(value, this[`_${i.target}Format`])
+      }, containerFormat(value, this[`${dtAttribute}Format`]));
+
+      // send specific change event (aka, start/stop)
+      this.ddau(`on${Ember.String.capitalize(i.target)}Change`, {
+        code: i.code,
+        target: i.target,
+        duration,
+        value: containerFormat(value, this[`${dtAttribute}Format`])
+      }, containerFormat(value, this[`${i.target}Format`]));
+    }
   }
 
 });
