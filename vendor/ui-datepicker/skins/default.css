@@ -22,8 +22,12 @@ dp-input {
   padding: 1em;
   border-radius: 0.25em;
   border: 1px darkgrey solid;
-  width: 260px;
-  height: 260px;
+  width: 275px;
+  height: 275px;
+}
+
+dp-input-month-heading  {
+  padding-bottom: 0.75em;
 }
 
 dp-input-month-heading .current-month .month {
@@ -35,8 +39,79 @@ dp-input-month-heading .current-month .month {
   color: #252424;
 }
 
-dow .day,
-calendar-body .day {
+dow day {
   color: #999;
   font-size: smaller;
+  font-weight: bold;
+}
+
+dp-composer date {
+  border-radius: 50%;
+  border: 1px white;
+}
+
+dp-composer date:hover {
+  background-color: #e6e6e6;
+  transition: 0.35s background-color;
+}
+
+dp-composer date.blacklist {
+  color: darkgrey;
+}
+dp-composer date.blacklist:hover {
+  border: #f64747 1px dotted;
+  background-color: rgba(246, 71, 71, 0.25);
+}
+
+dp-composer date.today {
+  border: 1px solid #f6f447;
+}
+dp-composer date.today:hover {
+  background-color: #f6f447;
+}
+
+dp-composer date.prior-month,
+dp-composer date.following-month {
+  color: hsl(0, 0%, 84%);
+}
+
+
+dp-composer date.holiday {
+  border: rgba(15, 51, 29, 0.4) 1px dotted;
+  border-radius: 50%;
+}
+
+dp-composer date.selected {
+  background-color: #446cb3;
+  border-radius: 50%;
+  color: white;
+}
+
+dp-composer month:hover {
+  border-color: hsl(2017, 66%, 15%);
+}
+
+dp-composer month.jan,
+dp-composer month.feb,
+dp-composer month.mar,
+dp-composer month.oct,
+dp-composer month.nov,
+dp-composer month.dec {
+  background-color: hsl(217, 66%, 38%);
+  color: hsl(0, 0%, 85%);
+}
+
+dp-composer month.apr,
+dp-composer month.may,
+dp-composer month.jun,
+dp-composer month.jul,
+dp-composer month.aug,
+dp-composer month.sep {
+  background-color: hsl(217, 66%, 50%);
+  color: hsl(0, 0%, 85%);
+}
+
+dp-composer month.selected {
+  color: hsl(0, 0%, 100%);
+  font-weight: 600;
 }

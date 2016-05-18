@@ -9,8 +9,17 @@ view-text {
 }
 
 datepicker.orient-vertical,
-datepicker .orient-vertical {
+dp-composer.orient-vertical
+datepicker .orient-vertical,
+dp-composer .orient-vertical {
   flex-direction: column;
+}
+
+datepicker.orient-horizontal,
+dp-composer.orient-horizontal
+datepicker .orient-horizontal,
+dp-composer .orient-horizontal {
+  flex-direction: row;
 }
 
 datepicker.fill,
@@ -68,4 +77,52 @@ datepicker.size-large {
 datepicker.size-small {
   font-size: 0.9em;
   padding: 0.4em;
+}
+
+dp-composer .current-month .month {
+  cursor: pointer;
+}
+
+dp-composer dates {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+dp-composer date {
+  display: flex;
+  flex: 0 0 14.28%;
+  width: 14.28%;
+  padding: 0.25em;
+  cursor: pointer;
+}
+
+dp-composer date.blacklist {
+  cursor: not-allowed;
+}
+
+dp-composer months {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+dp-composer month {
+  padding: 0.55em;
+  margin: .2em;
+  display: flex;
+  flex-basis: calc(33% - .4em);
+  min-width: calc(33% - .4em);
+  min-height: 25%;
+  justify-content: center;
+  align-items: center;
+
+  background-color: lightgrey;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+dp-composer month:hover {
+  border-width: 3px;
+  padding: calc(0.55em - 2px)
 }

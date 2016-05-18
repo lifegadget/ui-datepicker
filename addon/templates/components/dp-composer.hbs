@@ -1,9 +1,10 @@
-{{ui-animate animateOut domElement=elementId event='exit'}}
+{{ui-animate animateOut domElement=elementId duration=0.5 event='exit'}}
 <dp-composer id={{elementId}} class="{{class}} fill {{skin}}">
   {{#each _inputs as |i|}}
-    {{#ui-animate animateIn}}
+    {{#ui-animate animateIn duration=0.5}}
     {{component (concat 'dp-input-' i)
       datetime=datetime
+      onChange=(action onChange)
     }}
     {{/ui-animate}}
   {{/each}}

@@ -5,34 +5,65 @@
   {{#if hasBlock}}
     {{yield (hash
       header=(component 'dp-calendar-header'
-        datetime=datetime
+        datetime=_datetime
         isYearRelevant=isYearRelevant
+        increment=-1
+        incrementUnits='months'
+        setMode=(action 'setMode')
         onClick=(action 'changeInputFrame')
+        onIncrement=(action 'onIncrement')
       )
       dow=(component 'dp-calendar-dow'
         weekStartsOn=weekStartsOn
       )
       calendar=(component 'dp-calendar-body'
-        datetime=datetime
+        datetime=_datetime
         isYearRelevant=isYearRelevant
+
+        onChange=(action 'onChange')
       )
     )}}
   {{else}}
 
     {{dp-calendar-header
-      datetime=datetime
+      datetime=_datetime
       isYearRelevant=isYearRelevant
+      setMode=(action 'setMode')
       onClick=(action 'changeInputFrame')
+      onIncrement=(action 'onIncrement')
     }}
+
     {{#if isYearRelevant}}
       {{dp-calendar-dow
         weekStartsOn=weekStartsOn
-      }}      
+      }}
     {{/if}}
-    {{dp-calendar-body
-      datetime=datetime
-      isYearRelevant=isYearRelevant
+
+    {{ui-animate animateOut
+      duration=animateOutDuration
+      event='body-transition-out'
+      domClass='dp-calendar-body'
     }}
+    {{dp-calendar-body
+      datetime=_datetime
+      isYearRelevant=isYearRelevant
+
+      newDate=(action 'onChange')
+    }}
+
+
+    {{#if (eq mode 'months')}}
+      {{dp-calendar-months
+        datetime=_datetime
+        onChange=(action 'changeViewTimeframe')
+      }}
+    {{/if}}
+    {{#if (eq mode 'years')}}
+      {{dp-calendar-years
+        datetime=_datetime
+        onChange=(action 'changeViewTimeframe')
+      }}
+    {{/if}}
 
   {{/if}}
 </dp-input>

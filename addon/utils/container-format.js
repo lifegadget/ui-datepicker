@@ -1,5 +1,11 @@
 import Ember from 'ember';
 
+/**
+ * Given a momentjs datetime, it will convert back to a given format
+ * @param  {instance}   value   a momentjs instance
+ * @param  {string}     format  the format string set by the "mementize" function
+ * @return {mixed}              returns newly formatted date/time representation
+ */
 export default function containerFormat(value, format) {
   switch(format) {
     case 'moment-object':
@@ -12,7 +18,7 @@ export default function containerFormat(value, format) {
       return value.unix();
 
     default:
-      Ember.debug('unknown container format, passing back as momentjs object instance:', format);
+      Ember.debug(`container-format: unknown container format (${format}), passing back "as-is" ... value is: `, value);
       return value;
   }
 }

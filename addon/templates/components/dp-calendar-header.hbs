@@ -9,21 +9,27 @@
       class='previous-month'
       increment=-1
       incrementUnit='months'
+      onIncrement=(action 'onIncrement')
     }}
       &lt;
     {{/dp-incrementer}}
 
     <span class='current-month fill justify-center'>
-      <span class="month">{{moment-format datetime 'MMMM'}}</span>
+      <span class="month" onclick={{action 'setMode' 'months'}}>
+        {{moment-format datetime 'MMMM'}}
+      </span>
       {{#if isYearRelevant}}
         &nbsp;
-        <span class="year">{{moment-format datetime 'YYYY'}}</span>        
+        <span class="year" onclick={{action 'setMode' 'years'}}>
+          {{moment-format datetime 'YYYY'}}
+        </span>
       {{/if}}
     </span>
     {{#dp-incrementer
       class='next-month'
-      increment=-1
+      increment=1
       incrementUnit='months'
+      onIncrement=(action 'onIncrement')
     }}
       &gt;
     {{/dp-incrementer}}

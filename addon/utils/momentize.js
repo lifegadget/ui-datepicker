@@ -38,7 +38,7 @@ export default function momentize(input) {
       break;
 
     default:
-      debug('unknown format passed in as date/time, can\'t convert to moment object');
+      debug(`momentize: unknown format passed in as date/time: ${typeOf(input)}; can't convert to moment object`);
       object = false;
       format = `unknown ${typeOf(input)}`;
   }

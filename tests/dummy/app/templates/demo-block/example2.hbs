@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col-xs-6">
     {{#date-picker
-      start='2016-7-28 12:45:00'
+      start=start
       showTime=true
+      onStartChange=(mut start)
       as |dp|
     }}
       {{dp.decrementer increment=-1 incrementUnit='days'}}

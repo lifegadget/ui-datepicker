@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/date-picker';
 import moment from 'moment';
-import momentize from '../utils/momentize';
 import ddau from '../mixins/ddau';
+import momentize from '../utils/momentize';
 import containerFormat from '../utils/container-format';
 
 const { keys, create } = Object; // jshint ignore:line
@@ -120,22 +120,33 @@ const datePicker = Ember.Component.extend(ddau, {
   },
 
   actions: {
-    onChange(datetime, options) {
-      console.log('onchange');
+    onChange(target, change) {
+      console.log('date-picker: change', target, change);
+      change.target = target;
+      this.ddau('onChange', change, change.value);
+      if(target==='start') {
+        this.ddau('onStartChange', change, change.value);
+      } else if (target === 'stop'){
+        this.ddau('onStopChange', change, change.value);
+      }
+    },
+    onStartChange(change) {
+      console.log('date-picker: start change');
+      this.ddau('onChange', change, change.value);
     },
     onIncrement(i) {
+      console.log('increment', i);
       const dtAttribute = `_${i.target}`;
       const value = moment(this.get(dtAttribute)).add(i.amount, i.unit);
       const {_start, _stop} = this.getProperties('_start', '_stop');
       const duration = !_stop ? null : moment(_stop).diff(_start);
 
-      console.log(i.amount, i.units, containerFormat(value, this[`${dtAttribute}Format`]));
       // send to general change event
       this.ddau('onChange', {
         code: i.code,
         target: i.target,
         duration,
-        value: containerFormat(value, this[`_${i.target}Format`])
+        value: containerFormat(value, this[`${dtAttribute}Format`])
       }, containerFormat(value, this[`${dtAttribute}Format`]));
 
       // send specific change event (aka, start/stop)
@@ -144,7 +155,7 @@ const datePicker = Ember.Component.extend(ddau, {
         target: i.target,
         duration,
         value: containerFormat(value, this[`${dtAttribute}Format`])
-      }, containerFormat(value, this[`${i.target}Format`]));
+      }, containerFormat(value, this[`${dtAttribute}Format`]));
     }
   }
 

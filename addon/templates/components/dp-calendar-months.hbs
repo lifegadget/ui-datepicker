@@ -1,0 +1,13 @@
+{{yield}}
+{{#ui-animate 'zoomIn'}}
+<months>
+  {{#each months as |month|}}
+    <month
+      class="{{lower-case (moment-format month 'MMM')}}{{if (eq (moment-format month 'MMM') currentMonth) ' selected'}}"
+      onclick={{action 'onChange' month}}
+    >
+      <span>{{moment-format month 'MMM'}}</span>
+    </month>
+  {{/each}}
+</months>
+{{/ui-animate}}

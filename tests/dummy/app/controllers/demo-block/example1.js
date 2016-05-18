@@ -1,5 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  onStartChange: '2015-7-1'
+  start: '2016-5-16',
+  stop: '2016-12-25'
 });

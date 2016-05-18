@@ -1,0 +1,5 @@
+./addon/components/date-picker.js
+./mixins/*
+./helpers/*
+./utils/*
+./bower_components/ember/ember.js

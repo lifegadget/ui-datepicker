@@ -23,6 +23,7 @@
         mood=mood
 
         requestInputFrame=requestInputFrame
+        onChange=(action 'onChange' 'start')
       )
       end=(component 'dp-view-container'
         class='stop'
@@ -39,6 +40,7 @@
         timeFormat=timeFormat
 
         requestInputFrame=requestInputFrame
+        onChange=(action 'onChange' 'stop')
       )
       incrementer=(component 'dp-incrementer'
         target='start'
@@ -73,10 +75,9 @@
     skin=_skin
     animateIn=animateIn
     animateOut=animateOut
-    onChange=(action 'onChange')
+    onChange=(action 'onChange' 'start')
   }}
   {{/ember-tether}}
-  {{!-- {{ui-animate 'fadeOut' domElement=(concat '#start-composer-' elementId) event='monkey'}} --}}
 </div>
 {{/if}}
 
@@ -94,10 +95,8 @@
     inputs=_inputs
     animateIn=animateIn
     animateOut=animateOut
-    onChange=(action 'onChange')
+    onChange=(action 'onChange' 'stop')
   }}
   {{/ember-tether}}
-  {{!-- {{ui-animate 'fadeIn' domElement=(concat '#stop-composer-' elementId)}}
-  {{ui-animate 'fadeOut' domElement=(concat '#stop-composer-' elementId) event='monkey'}} --}}
 </div>
 {{/if}}

@@ -1,12 +1,12 @@
-<dow class="{{if class (concat class ' ')}}days-of-week flex fill justify-center">
+<dow class="dp-calendar-dow {{if class (concat class ' ')}}days-of-week flex fill justify-center">
   {{#if hasBlock}}
     {{yield}}
   {{else}}
 
     {{#each _dow as |day|}}
-      <span class="day {{day.type}}-heading flex fill">
-        {{day.name}}
-      </span>
+      <day class="{{day.type}}-heading flex fill justify-center">
+        <span>{{day.name}}</span>
+      </day>
     {{/each}}
 
   {{/if}}
