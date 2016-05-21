@@ -18,6 +18,7 @@
       )
       dates=(component 'dp-calendar-dates'
         datetime=_datetime
+        selected=datetime
         isYearRelevant=isYearRelevant
         onChange=(action 'onChange')
       )
@@ -47,6 +48,7 @@
       {{dp-calendar-dates
         mode=mode
         datetime=_datetime
+        selected=datetime
         isYearRelevant=isYearRelevant
         newDate=(action 'onChange')
       }}

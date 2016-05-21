@@ -34,10 +34,10 @@ const calendarBody = Ember.Component.extend(ddau, {
     }
   }),
   dates: computed('datetime', function() {
-    const {datetime, daysInMonth, firstDayInMonth} = this.getProperties('datetime', 'daysInMonth', 'firstDayInMonth');
+    const {datetime, selected, daysInMonth, firstDayInMonth} = this.getProperties('datetime', 'selected', 'daysInMonth', 'firstDayInMonth');
     const days = [];
     const today = moment().format('YYYY-MM-DD');
-    const selected = datetime.format('YYYY-MM-DD');
+    const selectedDate = selected.format('YYYY-MM-DD');
     // Get important dates for current, prior, and next month
     const holidays = this.get('holidays').filter(h => {
       return Math.abs(moment(h.date).format('M') - moment(datetime).format('M')) <= 1;
@@ -57,7 +57,7 @@ const calendarBody = Ember.Component.extend(ddau, {
         value: i,
         period: 'current-month',
         today: date === today,
-        selected: date === selected,
+        selected: date === selectedDate,
         holiday: holidaysOnDay.length > 0 ? holidaysOnDay : false,
         whitelisted: whitelist.filter(l => l.date === date).length > 0,
         blacklisted: blacklist.filter(l => l.date === date).length > 0,
@@ -71,7 +71,7 @@ const calendarBody = Ember.Component.extend(ddau, {
         value: moment(datetime).startOf('month').subtract(i, 'days').format('D'),
         period: 'prior-month',
         today: date === today,
-        selected: date === selected,
+        selected: date === selectedDate,
         // holiday: holidaysOnDay.length > 0 ? holidaysOnDay : false,
         whitelisted: whitelist.filter(l => l.date === date).length > 0,
         blacklisted: blacklist.filter(l => l.date === date).length > 0,
@@ -85,7 +85,7 @@ const calendarBody = Ember.Component.extend(ddau, {
         value: moment(date).format('D'),
         period: 'following-month',
         today: date === today,
-        selected: date === selected,
+        selected: date === selectedDate,
         // holiday: holidaysOnDay.length > 0 ? holidaysOnDay : false,
         whitelisted: whitelist.filter(l => l.date === date).length > 0,
         blacklisted: blacklist.filter(l => l.date === date).length > 0,

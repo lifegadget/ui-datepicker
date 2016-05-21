@@ -97,9 +97,8 @@ const datePicker = Ember.Component.extend(ddau, {
     if(show) {
       if(showingOtherComposer) { this.hideComposer(notWhich); }
       if(showingThisComposer) {
-        this.hideComposer(which).then(() => {
-          this.showComposer(which, selector, inputs);
-        });
+        this.hideComposer(which);
+        this.showComposer(which, selector, inputs);
       } else {
         this.showComposer(which, selector, inputs);
       }
@@ -107,15 +106,15 @@ const datePicker = Ember.Component.extend(ddau, {
       this.hideComposer(which);
     }
   },
-  requestInputFrame: computed(function(){ return this._requestInputFrame.bind(this); }),
+  requestInputFrame: computed(function() {
+    return this._requestInputFrame.bind(this);
+  }),
   showComposer(which, where, what) {
-    console.log(`show ${which}`);
     this.set(`_${which}Target`, where);
     this.set('_inputs', what);
     this.set(`show${which.slice(0,1).toUpperCase()}${which.slice(1)}Composer`, true);
   },
   hideComposer(which) {
-    console.log(`hide ${which}`);
     this.set(`show${which.slice(0,1).toUpperCase()}${which.slice(1)}Composer`, false);
   },
 

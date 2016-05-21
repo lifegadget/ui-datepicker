@@ -8,7 +8,7 @@
       class="{{date.period}}{{if date.today ' today'}}{{if date.selected ' selected'}}{{if date.holiday ' holiday'}}{{if date.blacklisted ' blacklist'}} justify-center"
       onclick={{action 'chooseDate' date.date}}
     >
-      <span>{{date.value}}</span>
+      <span class={{date.date}}>{{date.value}}</span>
     </date>
     {{/each}}
   </dates>
