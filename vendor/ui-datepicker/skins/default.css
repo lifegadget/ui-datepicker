@@ -1,11 +1,11 @@
-.skin-default .view {
+.skin-default view {
   cursor: pointer;
   padding: 3px 4px;
 }
 
-.skin-default .view:hover {
+.skin-default view:hover {
   background: lightgrey;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .skin-default .increment-image {
@@ -17,7 +17,22 @@
   cursor: pointer;
 }
 
-dp-input {
+.skin-default view-container {
+  align-items: center;
+  justify-content: center;
+}
+.skin-default view-container view {
+  justify-content: center;
+}
+
+.skin-default view.day {
+  font-size: 0.75em;
+  min-width: 35px;
+  border: 1px lightgrey solid;
+  border-radius: 4px;
+}
+
+.skin-default dp-input {
   background-color: white;
   padding: 1em;
   border-radius: 0.25em;
@@ -26,20 +41,20 @@ dp-input {
   height: 275px;
 }
 
-dp-input-month-heading  {
+.skin-default dp-input-month-heading  {
   padding-bottom: 0.75em;
 }
 
-dp-input-month-heading .current-month .month {
+.skin-default dp-input-month-heading .current-month .month {
   font-weight: 700;
   color: #000;
 }
-.current-month .year {
+.skin-default .current-month .year {
   font-weight: 400;
   color: #252424;
 }
 
-dow day {
+dp-composer dow day {
   color: #999;
   font-size: smaller;
   font-weight: bold;

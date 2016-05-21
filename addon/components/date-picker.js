@@ -38,8 +38,8 @@ const datePicker = Ember.Component.extend(ddau, {
    * for variant action/input support and to provide better CSS/meta information
    */
   dateFormat: 'DD MMM YYYY',
-  timeFormat: 'LT',
-  dayFormat: 'ddd, ',
+  timeFormat: 'H:mm a',
+  dayFormat: 'ddd',
 
   /**
    * Ensures that container's datetime is represented as moment object

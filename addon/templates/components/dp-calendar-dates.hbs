@@ -1,0 +1,18 @@
+<days-and-dates id={{elementId}} class='dp-calendar-dates flex fill'>
+  {{dp-calendar-dow
+    weekStartsOn=weekStartsOn
+  }}
+  <dates class='justify-start orient-horizontal'>
+    {{#each dates as |date|}}
+    <date
+      class="{{date.period}}{{if date.today ' today'}}{{if date.selected ' selected'}}{{if date.holiday ' holiday'}}{{if date.blacklisted ' blacklist'}} justify-center"
+      onclick={{action 'chooseDate' date.date}}
+    >
+      <span>{{date.value}}</span>
+    </date>
+    {{/each}}
+  </dates>
+</days-and-dates>
+
+
+{{yield}}

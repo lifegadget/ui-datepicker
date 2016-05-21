@@ -1,11 +1,10 @@
-<view-text
+<view
   id={{elementId}}
-  class="view text {{class}}"
+  class="view-text {{class}}"
   onclick={{action 'toggleInputs'}}
 >
   {{#if hasBlock}}
 
-    block
     {{yield}}
 
   {{else}}
@@ -15,4 +14,4 @@
     {{/if}}
 
   {{/if}}
-</view-text>
+</view>

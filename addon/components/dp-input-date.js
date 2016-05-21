@@ -3,6 +3,22 @@ import moment from 'moment';
 import layout from '../templates/components/dp-input-date';
 import ddau from '../mixins/ddau';
 
+const { keys, create } = Object; // jshint ignore:line
+const { RSVP: {Promise, all, race, resolve, defer} } = Ember; // jshint ignore:line
+const { inject: {service} } = Ember; // jshint ignore:line
+const { computed, observe, $, run, on, typeOf } = Ember;  // jshint ignore:line
+const { get, set, debug } = Ember; // jshint ignore:line
+const a = Ember.A; // jshint ignore:line
+const dispatchEvent = function(name, target) {
+  console.log('dispatching ', name);
+  const event = new CustomEvent(name);
+  let el = window.document.getElementsByClassName(target)[0];
+  if(el) {
+    el.dispatchEvent(event);
+  }
+};
+
+
 const inputDate = Ember.Component.extend(ddau, {
   layout,
   tagName:'',
@@ -19,18 +35,40 @@ const inputDate = Ember.Component.extend(ddau, {
     }
   }),
   isYearRelevant: true,
-  mode: 'days',
+  mode: null,
   animateIn: 'zoomIn',
   animateOut: 'fadeOut',
-  animateInDuration: '0.5',
+  animateInDuration: '0.35',
   animateOutDuration: '0.5',
+  init() {
+    this._super(...arguments);
+    run.next(() => {
+      this._setMode('dates');
+    });
+  },
+
+  _setMode(mode) {
+    const priorMode = this.get('mode');
+    if (mode === priorMode) {
+      mode = 'dates';
+    }
+    console.log(`Mode changing from ${priorMode} to ${mode}`);
+    if(priorMode) {
+      dispatchEvent(`hide-${priorMode}`, `dp-calendar-${priorMode}`);
+    }
+    if(mode) {
+      dispatchEvent(`show-${mode}`, `dp-calendar-${mode}`);
+    }
+
+    this.set('mode', mode);
+    console.log('set mode to: ', mode);
+  },
 
   actions: {
     changeInputFrame(frame) {
       console.log(frame);
     },
     onChange(change) {
-      console.log('dp-input-date');
       this.ddau('onChange', change, change.value);
     },
     /**
@@ -47,15 +85,7 @@ const inputDate = Ember.Component.extend(ddau, {
      * viewing state (aka, "mode")
      */
     setMode(mode) {
-      if (mode === this.get('mode')) {
-        this.set('mode', 'days');
-      } else {
-        const event = new CustomEvent('body-transition-out');
-        const el = window.document.getElementsByClassName('dp-calendar-body')[0];
-        el.dispatchEvent(event);
-
-        this.set('mode', mode);
-      }
+      this._setMode(mode);
     },
     /**
      * When the user chooses a new month or year, this action
@@ -67,7 +97,6 @@ const inputDate = Ember.Component.extend(ddau, {
      */
     changeViewTimeframe(newDate) {
       this.set('_datetime', newDate);
-      this.set('mode', 'days');
     }
   }
 

@@ -2,10 +2,14 @@ datepicker,
 dp-composer,
 incrementer,
 view-container,
-view-text {
+view {
   display: flex;
   align-items: center;
   flex-direction: row;
+}
+datepicker view {
+  padding: 0.25em;
+  margin: 0 .1em;
 }
 
 datepicker.orient-vertical,
@@ -79,7 +83,8 @@ datepicker.size-small {
   padding: 0.4em;
 }
 
-dp-composer .current-month .month {
+dp-composer .current-month .month,
+dp-composer .current-month .year {
   cursor: pointer;
 }
 
@@ -101,9 +106,32 @@ dp-composer date.blacklist {
   cursor: not-allowed;
 }
 
+dp-frame {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+dp-composer dates,
+dp-composer months,
+dp-composer years {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+dp-composer dates {
+  top: 1em; // make room for days of week
+}
+
 dp-composer months {
   display: flex;
   flex-wrap: wrap;
+}
+dp-composer months.hide {
+  opacity: 0;
+}
+dp-composer months.show {
+  opacity: 1;
 }
 
 dp-composer month {
@@ -125,4 +153,21 @@ dp-composer month {
 dp-composer month:hover {
   border-width: 3px;
   padding: calc(0.55em - 2px)
+}
+
+dp-input.time ampm{
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+animation {
+  display: block;
+}
+
+.animation-done {
+  display: none !important;
+}
+.animation-ready {
+  display: none !important;
 }

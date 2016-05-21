@@ -1,6 +1,5 @@
 {{yield}}
-{{#ui-animate 'zoomIn'}}
-<months>
+<months class="dp-calendar-months">
   {{#each months as |month|}}
     <month
       class="{{lower-case (moment-format month 'MMM')}}{{if (eq (moment-format month 'MMM') currentMonth) ' selected'}}"
@@ -10,4 +9,3 @@
     </month>
   {{/each}}
 </months>
-{{/ui-animate}}

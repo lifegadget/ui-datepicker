@@ -16,14 +16,24 @@
       dow=(component 'dp-calendar-dow'
         weekStartsOn=weekStartsOn
       )
-      calendar=(component 'dp-calendar-body'
+      dates=(component 'dp-calendar-dates'
         datetime=_datetime
         isYearRelevant=isYearRelevant
-
         onChange=(action 'onChange')
       )
+      months=(component 'dp-calendar-months'
+        datetime=_datetime
+        isYearRelevant=isYearRelevant
+        onChange=(action 'onChange')
+      )
+      years=(component 'dp-calendar-years'
+        datetime=_datetime
+        onChange=(action 'onChange')
+      )
+
     )}}
   {{else}}
+    {{! INLINE }}
 
     {{dp-calendar-header
       datetime=_datetime
@@ -33,37 +43,72 @@
       onIncrement=(action 'onIncrement')
     }}
 
-    {{#if isYearRelevant}}
-      {{dp-calendar-dow
-        weekStartsOn=weekStartsOn
+    <dp-frame>
+      {{dp-calendar-dates
+        mode=mode
+        datetime=_datetime
+        isYearRelevant=isYearRelevant
+        newDate=(action 'onChange')
       }}
-    {{/if}}
 
-    {{ui-animate animateOut
-      duration=animateOutDuration
-      event='body-transition-out'
-      domClass='dp-calendar-body'
-    }}
-    {{dp-calendar-body
-      datetime=_datetime
-      isYearRelevant=isYearRelevant
-
-      newDate=(action 'onChange')
-    }}
-
-
-    {{#if (eq mode 'months')}}
+      {{! -- Aux views for jumping the viewfinder }}
       {{dp-calendar-months
         datetime=_datetime
         onChange=(action 'changeViewTimeframe')
       }}
-    {{/if}}
-    {{#if (eq mode 'years')}}
       {{dp-calendar-years
         datetime=_datetime
         onChange=(action 'changeViewTimeframe')
       }}
-    {{/if}}
+    </dp-frame>
+
+
+    <animations>
+      {{! Animation Entrances }}
+      {{ui-animate animateIn
+        enter=true
+        duration=animateInDuration
+        event='show-dates'
+        domClass='dp-calendar-dates'
+      }}
+
+      {{ui-animate animateIn
+        enter=true
+        duration=animateInDuration
+        event='show-months'
+        domClass='dp-calendar-months'
+      }}
+
+      {{ui-animate animateIn
+        enter=true
+        duration=animateInDuration
+        event='show-years'
+        domClass='dp-calendar-years'
+      }}
+
+      {{! Animation Exits }}
+      {{ui-animate animateOut
+        duration=animateOutDuration
+        exit=true
+        event='hide-dates'
+        domClass='dp-calendar-dates'
+      }}
+
+      {{ui-animate animateOut
+        exit=true
+        duration=animateOutDuration
+        event='hide-months'
+        domClass='dp-calendar-months'
+      }}
+
+      {{ui-animate animateOut
+        exit=true
+        duration=animateOutDuration
+        event='hide-years'
+        domClass='dp-calendar-years'
+      }}
+
+    </animations>
 
   {{/if}}
 </dp-input>

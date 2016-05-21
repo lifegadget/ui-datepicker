@@ -1,1 +1,40 @@
-{{yield}}
+<dp-input
+  id={{elementId}}
+  class="time{{if class (concat ' ' class)}}"
+>
+  <dp-frame class="orient-vertical">
+    <time-header class='flex fit justify-center'>
+      <span>Change Time</span>
+    </time-header>
+    <time class="dp-input-time flex fill">
+      {{#if hasBlock}}
+        {{yield}}
+      {{else}}
+
+        {{ui-knob
+          min=0
+          max=720
+          value=160
+          step=5
+          thickness=0.3
+          angleArc=360
+          angleOffset=0
+          cursor=5
+          width='225'
+          height='225'
+        }}
+
+      {{/if}}
+    </time>
+    <ampm>
+      {{x-toggle
+        onLabel='pm'
+        offLabel='am'
+        theme='flip'
+        value=ampm
+        onToggle=(mut ampm)
+      }}
+    </ampm>
+
+  </dp-frame>
+</dp-input>

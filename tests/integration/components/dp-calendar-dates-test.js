@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('dp-calendar-body', 'Integration | Component | dp calendar body', {
+moduleForComponent('dp-calendar-dates', 'Integration | Component | dp calendar dates', {
   integration: true
 });
 
@@ -9,15 +9,15 @@ test('it renders', function(assert) {
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
-  this.render(hbs`{{dp-calendar-body}}`);
+  this.render(hbs`{{dp-calendar-dates}}`);
 
   assert.equal(this.$().text().trim(), '');
 
   // Template block usage:
   this.render(hbs`
-    {{#dp-calendar-body}}
+    {{#dp-calendar-dates}}
       template block text
-    {{/dp-calendar-body}}
+    {{/dp-calendar-dates}}
   `);
 
   assert.equal(this.$().text().trim(), 'template block text');

@@ -2,7 +2,7 @@
 
 import Ember from 'ember';
 import moment from 'moment';
-import layout from '../templates/components/dp-calendar-body';
+import layout from '../templates/components/dp-calendar-dates';
 import ddau from '../mixins/ddau';
 
 const { keys, create } = Object; // jshint ignore:line
